@@ -20,6 +20,7 @@ public class Benutzer {
 
     private boolean enabled = true;
 
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Rolle> roles;
 
@@ -61,7 +62,7 @@ public class Benutzer {
     }
 
     public Set<Rolle> getRoles() {
-        return rollen;
+        return roles;
     }
 
     public void setRoles(Set<Rolle> rollen) {
