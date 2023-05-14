@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                 .anyRequest().authenticated()
                 // füge CSRF token ein, welches evtl. für AJAX-requests benötigt wird
                 .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                //.ignoringAntMatchers("/console/**") <--- Nachfragen!!!
+                .ignoringRequestMatchers("/console/**")
                 // Request zum Aufruf der Login-Seite
                 .and().formLogin().loginPage("/login").failureUrl("/login?error=true").permitAll()
                 .defaultSuccessUrl("/", true)
