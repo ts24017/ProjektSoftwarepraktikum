@@ -21,7 +21,7 @@ public class SecurityConfiguration {
         http.
                 authorizeHttpRequests()
                 // alle Requests die ohne Login erreichbar sind
-                .requestMatchers("/login", "/register", "/console/**").permitAll()
+                .requestMatchers("/login", "/register").permitAll()
                 // definiere alle URLs die nur für eine bestimmte Rolle zugänglich sind
                 // Achtung: Spring Security fügt automatisch das Prefix "ROLE_" für die Überprüfung ein. Daher verwenden wir
                 // hier nicht "ROLE_ADMIN", wie bspw. im TestDataLoader angegeben.
@@ -42,7 +42,8 @@ public class SecurityConfiguration {
                 .logoutSuccessUrl("/login?logout");
 
         // Deaktiviert header security. Ermöglicht Nutzung der H2 Console.
-        http.headers().frameOptions().sameOrigin().disable();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
         return http.build();
     }
